@@ -558,9 +558,214 @@
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* TYPING EFFECT */
+    .hero-typing {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      min-height: 32px;
+    }
+    .typing-text {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+    }
+    .cursor {
+      animation: blink 1s infinite;
+      color: var(--accent);
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* HERO ANIMATIONS */
+    .hero-content > * {
+      opacity: 0;
+      animation: heroFadeIn 0.8s ease forwards;
+    }
+    .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+    .hero-content > *:nth-child(5) { animation-delay: 1s; }
+
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-image {
+      opacity: 0;
+      animation: heroImageIn 1s ease 0.5s forwards;
+    }
+    @keyframes heroImageIn {
+      from { opacity: 0; transform: scale(0.8) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* FLOATING ANIMATION */
+    .hero-image img {
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* CARD ANIMATIONS */
+    .project-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    /* SKILL ITEM ANIMATION */
+    .skill-item {
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .skill-item:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    /* BUTTON RIPPLE EFFECT */
+    .btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #fff 10%, transparent 10%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+    .btn:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
+    }
+
+    /* NAV SCROLL EFFECT */
+    nav.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* SECTION REVEAL ANIMATION */
+    .section-header {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .section-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* STAT COUNTER ANIMATION */
+    .stat h3 {
+      transition: all 0.3s ease;
+    }
+    .stat:hover h3 {
+      transform: scale(1.1);
+    }
+
+    /* ACHIEVEMENT CARD ANIMATION */
+    .achievement-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .achievement-card:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+
+    /* CONTACT LINK ANIMATION */
+    .contact-link {
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .contact-link:hover {
+      transform: translateX(8px);
+    }
+
+    /* TIMELINE ANIMATION */
+    .timeline-item {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* GRADIENT TEXT SHIMMER */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .hero-title .highlight {
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* LOADING SCREEN */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-content {
+      text-align: center;
+    }
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loader-text {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">&lt;Fahim/&gt;</div>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -595,9 +800,10 @@
             Hi, I'm<br/>
             <span class="highlight">Fahim Montasir</span>
           </h1>
-          <p class="hero-desc">
-            SQA Engineer & Computer Science student at <strong>United International University</strong> with a passion for ensuring software quality through manual and automated testing.
-          </p>
+          <div class="hero-typing">
+            <span class="typing-text"></span>
+            <span class="cursor">|</span>
+          </div>
           <div class="hero-actions">
             <a href="#cv" class="btn btn-primary">
               <i class="fas fa-download"></i> Download CV
@@ -1003,6 +1209,13 @@
   </footer>
 
   <script>
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1500);
+    });
+
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
@@ -1016,7 +1229,7 @@
       });
     });
 
-    // Active nav
+    // Active nav & nav scroll effect
     window.addEventListener('scroll', () => {
       let current = '';
       document.querySelectorAll('section[id]').forEach(s => {
@@ -1025,13 +1238,70 @@
       document.querySelectorAll('.nav-links a').forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + current);
       });
+      
+      // Nav scroll effect
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     });
+
+    // Typing effect
+    const typingElement = document.querySelector('.typing-text');
+    const phrases = [
+      'SQA Engineer',
+      'Software Tester',
+      'Automation Expert',
+      'Bug Hunter',
+      'Quality Assurance'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeWriter() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+      }
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingSpeed = 2000; // Pause at end
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingSpeed = 500; // Pause before new word
+      }
+
+      setTimeout(typeWriter, typingSpeed);
+    }
+    
+    // Start typing after loader
+    setTimeout(typeWriter, 1800);
 
     // Fade-up animation
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => { 
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.fade-up, .section-header, .timeline-item').forEach(el => {
+      observer.observe(el);
+    });
 
     // Contact form
     document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -1044,6 +1314,29 @@
         btn.style.opacity = '1';
         this.reset();
       }, 3000);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Parallax effect for hero image
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const heroImage = document.querySelector('.hero-image img');
+      if (heroImage && scrolled < 800) {
+        heroImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+      }
     });
   </script>
 </body>
